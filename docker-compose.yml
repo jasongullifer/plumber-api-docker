@@ -3,6 +3,6 @@ services:
   lep:
       image: lep
       ports:
-        - "80:5762"
+        - "8080:5762"
       container_name: lep-container
       tty: true
