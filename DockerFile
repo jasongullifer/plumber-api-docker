@@ -1,7 +1,5 @@
 FROM rstudio/plumber
 
-COPY languageEntropyPredictor_0.0.0.9000.tar.gz /packages/languageEntropyPredictor_0.0.0.9000.tar.gz
-
 #RUN apt-get -y install libcurl4-gnutls-dev libxml2-dev libssl-dev
 #RUN R -e "install.packages(c('devtools'), repos='http://cran.rstudio.com/')"
 
@@ -9,9 +7,11 @@ RUN install2.r -e devtools here dplyr psych doParallel groupdata2 dataPreparatio
 RUN R -e 'devtools::install_github(c("jasongullifer/languageentropy", "rstudio/plumber"))'
 
 
+COPY languageEntropyPredictor_0.0.0.9000.tar.gz /packages/languageEntropyPredictor_0.0.0.9000.tar.gz
 RUN install2.r -e /packages/languageEntropyPredictor_0.0.0.9000.tar.gz
 
 # Plumb & run server
-EXPOSE 5762
+EXPOSE 8080
+
 ENTRYPOINT ["R", "-e", \
-    "pr <- plumber::plumb('/usr/local/lib/R/site-library/languageEntropyPredictor/model-api.R'); pr$run(host='0.0.0.0', port=5762)"]
+    "languageEntropyPredictor::plumb_api()"]
