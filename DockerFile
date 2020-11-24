@@ -3,7 +3,7 @@ FROM rstudio/plumber
 #RUN apt-get -y install libcurl4-gnutls-dev libxml2-dev libssl-dev
 #RUN R -e "install.packages(c('devtools'), repos='http://cran.rstudio.com/')"
 
-RUN install2.r -e devtools here dplyr psych doParallel groupdata2 dataPreparation glmnet broom GPArotation ggplot2 shiny config tidyr png rmarkdown
+RUN install2.r -e devtools here dplyr psych doParallel groupdata2 dataPreparation glmnet broom GPArotation ggplot2 shiny config tidyr png pandoc rmarkdown
 RUN R -e 'devtools::install_github(c("jasongullifer/languageentropy", "rstudio/plumber"))'
 
 COPY languageEntropyPredictor_0.0.1.0000.tar.gz /packages/languageEntropyPredictor_0.0.1.0000.tar.gz
