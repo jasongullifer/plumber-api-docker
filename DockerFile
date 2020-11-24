@@ -6,8 +6,8 @@ FROM rstudio/plumber
 RUN install2.r -e devtools here dplyr psych doParallel groupdata2 dataPreparation glmnet broom GPArotation ggplot2 shiny config tidyr png
 RUN R -e 'devtools::install_github(c("jasongullifer/languageentropy", "rstudio/plumber"))'
 
-COPY languageEntropyPredictor_0.0.0.9000.tar.gz /packages/languageEntropyPredictor_0.0.0.9000.tar.gz
-RUN install2.r -e /packages/languageEntropyPredictor_0.0.0.9000.tar.gz
+COPY languageEntropyPredictor_0.0.1.0000.tar.gz /packages/languageEntropyPredictor_0.0.1.0000.tar.gz
+RUN install2.r -e /packages/languageEntropyPredictor_0.0.1.0000.tar.gz
 
 # Plumb & run server
 EXPOSE 8080
